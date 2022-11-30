@@ -13,11 +13,10 @@ namespace CaravanGivesStewardExp
     {
         static void Postfix(MobileParty mobileParty, ref bool __result)
         {
-            __result = mobileParty.IsActive &&
+            __result = (mobileParty.IsActive || mobileParty.IsCaravan) &&
                    (mobileParty.LeaderHero == null || mobileParty.LeaderHero.IsLord || mobileParty.LeaderHero.Clan == Clan.PlayerClan || mobileParty.LeaderHero.IsMinorFactionHero) &&
                    !mobileParty.IsGarrison &&
-                   !mobileParty.IsCommonAreaParty ||
-                   mobileParty.IsCaravan &&
+                   !mobileParty.IsCommonAreaParty &&
                    !mobileParty.IsBandit &&
                    !mobileParty.IsMilitia &&
                    !mobileParty.IsVillager;
